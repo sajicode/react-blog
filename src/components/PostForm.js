@@ -27,7 +27,7 @@ const PostForm = () => (
 			</select>
 			<input type="text" placeholder="Enter Keywords" />
 			<input type="text" placeholder="Author" />
-			<textarea placeholder="Add the notes for your post" />
+			<textarea placeholder="Enter the text for your post" />
 			<button>Add Post</button>
 		</form>
 	</div>
