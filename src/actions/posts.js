@@ -3,15 +3,9 @@ import uuid from 'uuid';
 // Post ACTIONS
 
 // ADD_POST
-export const addPost = ({
-	title = '',
-	subtitle = '',
-	category = '',
-	keywords = '',
-	author = '',
-	text = '',
-	createdAt = 0
-} = {} = {
+export const addPost = (
+	{ title = '', subtitle = '', category = '', keywords = '', author = '', text = '', createdAt = 0 } = {}
+) => ({
 	type: 'ADD_POST',
 	post: {
 		id: uuid(),
