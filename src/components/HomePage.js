@@ -1,8 +1,9 @@
 import React from 'react';
+import PostList from './PostList';
 
 const HomePage = () => (
 	<div>
-		<h1>This is the Home Page</h1>
+		<PostList />
 	</div>
 );
 

@@ -5,7 +5,7 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addPost } from './actions/posts';
 import getVisiblePosts from './selectors/posts';
-
+import { setTextFilter } from './actions/filters';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
@@ -43,6 +43,8 @@ store.dispatch(
 		text: 'React states can be easily managed with setState, but what about increasingly complex applications?....'
 	})
 );
+
+store.dispatch(setTextFilter('react'));
 
 store.subscribe(() => {
 	const state = store.getState();
