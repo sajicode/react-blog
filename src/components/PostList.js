@@ -5,6 +5,7 @@ import PostListItem from './PostListItem';
 
 const PostList = (props) => (
 	<div>
+		<h1>Post List</h1>
 		{props.posts.map((post, index) => {
 			return <PostListItem key={index} {...post} />;
 		})}

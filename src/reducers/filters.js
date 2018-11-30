@@ -2,7 +2,7 @@
 
 const filtersReducerDefaultState = {
 	text: '',
-	sortBy: 'date'
+	sortBy: 'category'
 };
 
 export default (state = filtersReducerDefaultState, action) => {
