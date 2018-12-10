@@ -7,7 +7,6 @@ module.exports = (env) => {
 	const isProduction = env === 'production';
 
 	console.log('env', env);
-
 	return {
 		mode: devMode ? 'development' : 'production',
 		entry: {
@@ -32,7 +31,7 @@ module.exports = (env) => {
 					test: /\.s?css?/,
 					use: [
 						'style-loader',
-						MiniCssExtractPlugin,
+						MiniCssExtractPlugin.loader,
 						{
 							loader: 'css-loader',
 							options: {

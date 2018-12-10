@@ -1,13 +1,17 @@
 // Get visible posts
+import moment from 'moment';
 
-export default (posts, { text, sortBy }) => {
+export default (posts, { text, sortBy, startDate, endDate }) => {
 	return posts
 		.filter((post) => {
+			const createdAtMoment = moment(post.createdAt);
+			const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
+			const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
 			const textMatch =
 				post.text.toLowerCase().includes(text.toLowerCase()) ||
 				post.category.toLowerCase().includes(text.toLowerCase());
 
-			return textMatch;
+			return startDateMatch && endDateMatch && textMatch;
 		})
 		.sort((a, b) => {
 			if (sortBy === 'date') {

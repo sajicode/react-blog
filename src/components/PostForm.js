@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
 
 export default class PostForm extends React.Component {
 	constructor(props) {
@@ -9,9 +11,11 @@ export default class PostForm extends React.Component {
 			title: props.post ? props.post.title : '',
 			subtitle: props.post ? props.post.subtitle : '',
 			keywords: props.post ? props.post.keywords : '',
+			category: props.post ? props.post.category : '',
 			author: props.post ? props.post.author : '',
 			text: props.post ? props.post.text : '',
 			createdAt: props.post ? moment(props.post.createdAt) : moment(),
+			calendarFocused: false,
 			error: ''
 		};
 	}
@@ -31,9 +35,24 @@ export default class PostForm extends React.Component {
 		this.setState(() => ({ keywords }));
 	};
 
+	onCategoryChange = (e) => {
+		const category = e.target.value;
+		this.setState(() => ({ category }));
+	};
+
 	onAuthorChange = (e) => {
 		const author = e.target.value;
 		this.setState(() => ({ author }));
+	};
+
+	onDateChange = (createdAt) => {
+		if (createdAt) {
+			this.setState(() => ({ createdAt }));
+		}
+	};
+
+	onFocusChange = ({ focused }) => {
+		this.setState(() => ({ calendarFocused: focused }));
 	};
 
 	onTextChange = (e) => {
@@ -48,6 +67,7 @@ export default class PostForm extends React.Component {
 			!this.state.title ||
 			!this.state.subtitle ||
 			!this.state.keywords ||
+			!this.state.category ||
 			!this.state.author ||
 			!this.state.text
 		) {
@@ -58,7 +78,9 @@ export default class PostForm extends React.Component {
 				title: this.state.title,
 				subtitle: this.state.subtitle,
 				keywords: this.state.keywords,
+				category: this.state.category,
 				author: this.state.author,
+				createdAt: this.state.createdAt.valueOf(),
 				text: this.state.text
 			});
 		}
@@ -89,7 +111,22 @@ export default class PostForm extends React.Component {
 						value={this.state.keywords}
 						onChange={this.onKeywordChange}
 					/>
+
+					<input
+						type="text"
+						placeholder="Enter Category"
+						value={this.state.category}
+						onChange={this.onCategoryChange}
+					/>
+
 					<input type="text" placeholder="Author" value={this.state.author} onChange={this.onAuthorChange} />
+					<SingleDatePicker
+						date={this.state.createdAt}
+						onDateChange={this.onDateChange}
+						focused={this.state.calendarFocused}
+						onFocusChange={this.onFocusChange}
+						numberOfMonths={1}
+					/>
 					<textarea
 						placeholder="Enter the text for your post"
 						value={this.state.text}
