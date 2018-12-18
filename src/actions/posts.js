@@ -44,3 +44,26 @@ export const removePost = ({ id }) => ({
 	type: 'REMOVE_POST',
 	id
 });
+
+// SET_POSTS in order to display posts on homepage
+export const setPosts = (posts) => ({
+	type: 'SET_POSTS',
+	posts
+});
+
+// START_SET_POSTS
+
+export const startSetPosts = () => {
+	return (dispatch) => {
+		return database.ref('posts').once('value').then((snapshot) => {
+			const posts = [];
+			snapshot.forEach((childSnapshot) => {
+				posts.push({
+					id: childSnapshot.key,
+					...childSnapshot.val()
+				});
+			});
+			dispatch(setPosts(posts));
+		});
+	};
+};

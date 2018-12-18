@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addPost } from './actions/posts';
-import getVisiblePosts from './selectors/posts';
-import { setTextFilter } from './actions/filters';
+import { startSetPosts } from './actions/posts';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 
 const store = configureStore();
 
@@ -18,4 +17,8 @@ const jsx = (
 	</Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading Posts...</p>, document.getElementById('app'));
+
+store.dispatch(startSetPosts()).then(() => {
+	ReactDOM.render(jsx, document.getElementById('app'));
+});
