@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
-import { editPost, removePost } from '../actions/posts';
+import { editPost, startRemovePost } from '../actions/posts';
 
 export class EditPostPage extends React.Component {
 	onSubmit = (post) => {
@@ -9,7 +9,7 @@ export class EditPostPage extends React.Component {
 		this.props.history.push('/');
 	};
 	onRemove = () => {
-		this.props.removePost({ id: this.props.post.id });
+		this.props.startRemovePost({ id: this.props.post.id });
 		this.props.history.push('/');
 	};
 	render() {
@@ -29,7 +29,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
 	editPost: (id, post) => dispatch(editPost(id, post)),
-	removePost: (data) => dispatch(removePost(data))
+	startRemovePost: (data) => dispatch(startRemovePost(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);

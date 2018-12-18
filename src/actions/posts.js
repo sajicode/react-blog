@@ -40,10 +40,18 @@ export const editPost = (id, updates) => ({
 });
 
 // REMOVE_POST
-export const removePost = ({ id }) => ({
+export const removePost = ({ id } = {}) => ({
 	type: 'REMOVE_POST',
 	id
 });
+
+export const startRemovePost = ({ id } = {}) => {
+	return (dispatch) => {
+		return database.ref(`posts/${id}`).remove().then(() => {
+			dispatch(removePost({ id }));
+		});
+	};
+};
 
 // SET_POSTS in order to display posts on homepage
 export const setPosts = (posts) => ({
