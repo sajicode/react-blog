@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
-import { editPost, startRemovePost } from '../actions/posts';
+import { startEditPost, startRemovePost } from '../actions/posts';
 
 export class EditPostPage extends React.Component {
 	onSubmit = (post) => {
-		this.props.editPost(this.props.post.id, post);
+		this.props.startEditPost(this.props.post.id, post);
 		this.props.history.push('/');
 	};
 	onRemove = () => {
@@ -28,7 +28,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-	editPost: (id, post) => dispatch(editPost(id, post)),
+	startEditPost: (id, post) => dispatch(startEditPost(id, post)),
 	startRemovePost: (data) => dispatch(startRemovePost(data))
 });
 
