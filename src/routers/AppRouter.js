@@ -1,27 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from '../components/Header';
-import HomePage from '../components/HomePage';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import DashboardPage from '../components/DashboardPage';
 import AddPostPage from '../components/AddPostPage';
 import EditPostPage from '../components/EditPostPage';
-import AboutPage from '../components/AboutPage';
-import ContactPage from '../components/ContactPage';
 import FourOFourPage from '../components/FourOFourPage';
+import LoginPage from '../components/LoginPage';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
+export const history = createHistory();
 
 const AppRouter = () => (
-	<BrowserRouter>
+	<Router history={history}>
 		<div>
-			<Header />
 			<Switch>
-				<Route path="/" component={HomePage} exact={true} />
-				<Route path="/create" component={AddPostPage} />
-				<Route path="/edit/:id" component={EditPostPage} />
-				<Route path="/about" component={AboutPage} />
-				<Route path="/contact" component={ContactPage} />
+				<PublicRoute path="/" component={LoginPage} exact={true} />
+				<PrivateRoute path="/dashboard" component={DashboardPage} />
+				<PrivateRoute path="/create" component={AddPostPage} />
+				<PrivateRoute path="/edit/:id" component={EditPostPage} />
 				<Route component={FourOFourPage} />
 			</Switch>
 		</div>
-	</BrowserRouter>
+	</Router>
 );
 
 export default AppRouter;

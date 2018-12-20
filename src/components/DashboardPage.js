@@ -2,11 +2,11 @@ import React from 'react';
 import PostList from './PostList';
 import PostListFilters from './PostListFilters';
 
-const HomePage = () => (
+const DashboardPage = () => (
 	<div>
 		<PostListFilters />
 		<PostList />
 	</div>
 );
 
-export default HomePage;
+export default DashboardPage;
