@@ -69,22 +69,31 @@ export default class PostForm extends PureComponent {
 		return (
 			<div>
 				{this.state.error && <p>{this.state.error}</p>}
-				<form onSubmit={this.onSubmit}>
+				<form className="form" onSubmit={this.onSubmit}>
+					{this.state.error && <p className="form__error">{this.state.error}</p>}
 					<input
 						type="text"
 						placeholder="Post Title"
 						autoFocus
+						className="text-input"
 						value={this.state.title}
 						onChange={this.onTitleChange}
 					/>
 					<input
 						type="text"
 						placeholder="Post Subtitle"
+						className="text-input"
 						value={this.state.subtitle}
 						onChange={this.onSubtitleChange}
 					/>
 
-					<input type="text" placeholder="Author" value={this.state.author} onChange={this.onAuthorChange} />
+					<input
+						type="text"
+						placeholder="Author"
+						className="text-input"
+						value={this.state.author}
+						onChange={this.onAuthorChange}
+					/>
 
 					<SingleDatePicker
 						date={this.state.createdAt}
@@ -96,10 +105,11 @@ export default class PostForm extends PureComponent {
 
 					<textarea
 						placeholder="Enter the text for your post"
+						className="textarea"
 						value={this.state.text}
 						onChange={this.onTextChange}
 					/>
-					<button>Add Post</button>
+					<button className="button">Add Post</button>
 				</form>
 			</div>
 		);

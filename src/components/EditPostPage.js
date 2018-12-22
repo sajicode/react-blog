@@ -15,9 +15,17 @@ export class EditPostPage extends PureComponent {
 	render() {
 		return (
 			<div>
-				<h1>Edit Post</h1>
-				<PostForm post={this.props.post} onSubmit={this.onSubmit} />
-				<button onClick={this.onRemove}>Remove</button>
+				<div className="page-header">
+					<div className="content-container">
+						<h1 className="page-header__title">Edit Post</h1>
+					</div>
+				</div>
+				<div className="content-container">
+					<PostForm post={this.props.post} onSubmit={this.onSubmit} />
+					<button className="button button--secondary" onClick={this.onRemove}>
+						Remove Expense
+					</button>
+				</div>
 			</div>
 		);
 	}

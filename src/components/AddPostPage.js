@@ -11,8 +11,14 @@ export class AddPostPage extends PureComponent {
 	render() {
 		return (
 			<div>
-				<h1>Add Post</h1>
-				<PostForm onSubmit={this.onSubmit} />
+				<div className="page-header">
+					<div className="content-container">
+						<h1 className="page-header__title">Add Post</h1>
+					</div>
+				</div>
+				<div className="content-container">
+					<PostForm onSubmit={this.onSubmit} />
+				</div>
 			</div>
 		);
 	}

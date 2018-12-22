@@ -23,21 +23,34 @@ export class PostListFilters extends PureComponent {
 
 	render() {
 		return (
-			<div>
-				<input type="text" value={this.props.filters.text} onChange={this.onTextChange} />
+			<div className="content-container">
+				<h1 className="page-header__title">Dev Posts</h1>
+				<div className="input-group">
+					<div className="input-group__item">
+						<input
+							type="text"
+							className="text-input"
+							placeholder="Search posts"
+							value={this.props.filters.text}
+							onChange={this.onTextChange}
+						/>
+					</div>
 
-				<DateRangePicker
-					startDate={this.props.filters.startDate}
-					startDateId="start_date_input"
-					endDate={this.props.filters.endDate}
-					endDateId="end_date_input"
-					onDatesChange={this.onDatesChange}
-					focusedInput={this.state.calendarFocused}
-					onFocusChange={this.onFocusChange}
-					showClearDates={true}
-					numberOfMonths={1}
-					isOutsideRange={() => false}
-				/>
+					<div className="input-group__item">
+						<DateRangePicker
+							startDate={this.props.filters.startDate}
+							startDateId="startDateInput"
+							endDate={this.props.filters.endDate}
+							endDateId="endDateInput"
+							onDatesChange={this.onDatesChange}
+							focusedInput={this.state.calendarFocused}
+							onFocusChange={this.onFocusChange}
+							showClearDates={true}
+							numberOfMonths={1}
+							isOutsideRange={() => false}
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	}

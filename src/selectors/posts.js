@@ -7,9 +7,7 @@ export default (posts, { text, sortBy, startDate, endDate }) => {
 			const createdAtMoment = moment(post.createdAt);
 			const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
 			const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
-			const textMatch =
-				post.text.toLowerCase().includes(text.toLowerCase()) ||
-				post.category.toLowerCase().includes(text.toLowerCase());
+			const textMatch = post.text.toLowerCase().includes(text.toLowerCase());
 
 			return startDateMatch && endDateMatch && textMatch;
 		})
