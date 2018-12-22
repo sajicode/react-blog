@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import { setTextFilter, sortByDate, setStartDate, setEndDate } from '../actions/filters';
 
-export class PostListFilters extends React.Component {
+export class PostListFilters extends PureComponent {
 	state = {
 		calendarFocused: null
 	};
@@ -21,26 +21,11 @@ export class PostListFilters extends React.Component {
 		this.props.setTextFilter(e.target.value);
 	};
 
-	onSortChange = (e) => {
-		if (e.target.value === 'javascript' || 'php' || 'go' || 'css') {
-			this.props.setTextFilter(e.target.value);
-		} else if (e.target.value === 'date') {
-			this.props.sortByDate();
-		}
-	};
-
 	render() {
 		return (
 			<div>
 				<input type="text" value={this.props.filters.text} onChange={this.onTextChange} />
-				<select value={this.props.filters.sortBy} onChange={this.onSortChange}>
-					<option>Select Category</option>
-					<option value="javascript">JavaScript</option>
-					<option value="php">PHP</option>
-					<option value="go">Golang</option>
-					<option value="css">CSS</option>
-					<option value="date">By Date</option>
-				</select>
+
 				<DateRangePicker
 					startDate={this.props.filters.startDate}
 					startDateId="start_date_input"

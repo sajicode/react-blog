@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import { startEditPost, startRemovePost } from '../actions/posts';
 
-export class EditPostPage extends React.Component {
+export class EditPostPage extends PureComponent {
 	onSubmit = (post) => {
 		this.props.startEditPost(this.props.post.id, post);
 		this.props.history.push('/');
@@ -33,26 +33,3 @@ const mapDispatchToProps = (dispatch, props) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);
-
-// old version
-
-// const EditPostPage = (props) => (
-// 	<div>
-// 		<h1>Edit Post</h1>
-// 		<PostForm
-// 			post={props.post}
-// 			onSubmit={(post) => {
-// 				props.dispatch(editPost(props.post.id, post));
-// 				props.history.push('/');
-// 			}}
-// 		/>
-// 		<button
-// 			onClick={(e) => {
-// 				props.dispatch(removePost({ id: props.post.id }));
-// 				props.history.push('/');
-// 			}}
-// 		>
-// 			Remove
-// 		</button>
-// 	</div>
-// );

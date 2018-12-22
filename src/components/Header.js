@@ -3,14 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
-const Header = () => (
+export const Header = () => (
 	<header>
-		<h1>Dev Blog</h1>
-		<NavLink to="/dashboard" activeClassName="is-active" exact={true}>
-			Dashboard
+		<NavLink to="/dashboard">
+			<h1>Dev Blog</h1>
 		</NavLink>
-		<NavLink to="/create" activeClassName="is-active">
-			Create Post
+		<NavLink to="/create">
+			<h1>Add Post</h1>
 		</NavLink>
 		<button onClick={startLogout}>Logout</button>
 	</header>

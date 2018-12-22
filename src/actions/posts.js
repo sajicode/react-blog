@@ -12,16 +12,8 @@ export const addPost = (post) => ({
 export const startAddPost = (postData = {}) => {
 	return (dispatch, getState) => {
 		const uid = getState().auth.uid;
-		const {
-			title = '',
-			subtitle = '',
-			category = '',
-			keywords = '',
-			author = '',
-			text = '',
-			createdAt = 0
-		} = postData;
-		const post = { title, subtitle, category, keywords, author, text, createdAt };
+		const { title = '', subtitle = '', author = '', text = '', createdAt = 0 } = postData;
+		const post = { title, subtitle, author, text, createdAt };
 		return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
 			dispatch(
 				addPost({

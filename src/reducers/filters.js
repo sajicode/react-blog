@@ -23,12 +23,6 @@ export default (state = filtersReducerDefaultState, action) => {
 				sortBy: 'date'
 			};
 
-		case 'SORT_BY_CATEGORY':
-			return {
-				...state,
-				sortBy: 'category'
-			};
-
 		case 'SET_START_DATE':
 			return {
 				...state,

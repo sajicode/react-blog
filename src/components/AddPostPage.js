@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import { startAddPost } from '../actions/posts';
 
-export class AddPostPage extends React.Component {
+export class AddPostPage extends PureComponent {
 	onSubmit = (post) => {
 		this.props.startAddPost(post);
 		this.props.history.push('/');
